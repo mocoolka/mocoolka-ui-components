@@ -1,0 +1,98 @@
+import * as React from 'react';
+import { omit } from 'mocoolka-fp/lib/object';
+// import { isEmpty } from 'mocoolka-fp/lib/predicate';
+// import { TInputPropType, TCssProperty, MCssSelector, m, TCssInputProperty } from './type';
+import { parseTag, isSVGElement, parseClassName, isStyledComponent } from './utils';
+// import { isPropertyValue, getPropertyValue } from './theme';
+import { InputProp } from './Css/type';
+
+//tslint:disable
+const { pickHTMLProps, pickSVGProps } = require('pick-react-known-prop');
+// tslint:enable
+const As = ({ nextAs, ...props }: { [name: string]: string }) => _render({ ...props, as: nextAs });
+
+const _render = ({ as: _as, theme, ...props }: { [name: string]: any }) => {
+  const T = parseTag(_as);
+
+  if (Array.isArray(T)) {
+    const [First, ...others] = T.filter(x => x !== As);
+    return <First {...props} as={As} nextAs={others} />;
+  }
+  const rProps: { [name: string]: any } = props;
+/*   Object.keys(props).forEach(key => {
+    if (isPropertyValue(a, b)(theme)) {
+      rProps = Object.assign({}, rProps, getPropertyValue(a, b)(theme));
+    } else {
+      rProps[a] = b;
+    }
+  }); */
+  // const style = m.pickProps(rProps);
+  const className = parseClassName(rProps.className);
+
+  if (typeof T === 'string') {
+    const { dangerouslySetInnerHTML, children } = rProps;
+    const propsWithoutStyle = rProps;
+    const propsWithStyle = {
+      ...propsWithoutStyle,
+      // ...(!isEmpty(style) ? { style } : {}),
+    };
+    const otherProps = dangerouslySetInnerHTML
+      ? { dangerouslySetInnerHTML }
+      : {};
+    const allProps = {
+      ...(isSVGElement(T) && pickSVGProps(propsWithStyle)),
+      ...pickHTMLProps(propsWithStyle),
+      ...otherProps,
+      className,
+    };
+
+    return (
+      <T {...allProps} ref={rProps.elementRef}>
+        {children}
+      </T>
+    );
+  }
+
+  return <T {...rProps} className={className} />;
+};
+
+export const as = <T, D>(asComponents: any) => (WrappedComponent: any) =>
+  (defaultValue: D): React.ComponentClass<T & InputProp> => {
+    const target = isStyledComponent(WrappedComponent)
+      ? WrappedComponent.target
+      : WrappedComponent;
+
+    const components = [].concat(WrappedComponent, asComponents);
+
+    const getComponentName = (component: any) =>
+      component.displayName || component.name || component;
+
+    const displayName = `${getComponentName(WrappedComponent)}.as(${[]
+      .concat(asComponents)
+      .map(getComponentName)})`;
+
+    const defineProperties = (scope: any) => {
+      scope.asComponents = asComponents;
+      scope.as = (otherComponents: any) => as(otherComponents)(scope)({});
+      return scope;
+    };
+
+    if (asComponents === target.asComponents) {
+      return defineProperties(WrappedComponent);
+    }
+
+    const getAs = (props: any) => components.concat(props.as || [], props.nextAs || []);
+    let Component = class extends React.Component<T & InputProp> {
+      static defaultProps: D = defaultValue;
+      static displayName = displayName;
+      render() {
+        return _render(Object.assign({}, omit(this.props, 'nextAs'), { as: getAs(this.props) }));
+      }
+    };
+    if (isStyledComponent(WrappedComponent)) {
+      Component = WrappedComponent.withComponent(Component);
+      Component.displayName = `Styled(${displayName})`;
+    }
+
+    return defineProperties(Component);
+  };

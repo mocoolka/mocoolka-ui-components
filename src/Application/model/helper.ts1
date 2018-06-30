@@ -1,0 +1,68 @@
+import { Nav, IProp } from './type';
+import { II18n, II18nNav, II18nProp  } from './typeI18N';
+import { Getter } from 'mocoolka-fp/lib/Monocle';
+import { array } from 'mocoolka-fp/lib/Array';
+export const getNav = new Getter<Nav, II18nNav>((p: Nav): II18nNav => {
+
+    const base: II18nNav = {
+        name: p.name,
+        title: {
+            id: `${p.orgName}.module.${p.name}.title`,
+            defaultMessage: p.title ? p.title : p.name,
+        },
+        items: array.map(p.items, v => {
+            const sub: II18nNav = {
+                name: v.name,
+                title: {
+                    id: `${p.orgName}.page.${p.name}.${v.name}.title`,
+                    defaultMessage: v.title ? v.title : v.name,
+                },
+            };
+            if (v.description) {
+                sub.description = {
+                    id: `${p.orgName}.page.${p.name}.${v.name}.description`,
+                    defaultMessage: v.description,
+                };
+            }
+            return sub;
+        }),
+
+    };
+    if (p.description) {
+        base.description = {
+            id: `${p.orgName}.module.${p.name}.description`,
+            defaultMessage: p.description,
+        };
+    }
+    return base;
+});
+export const getNavs = (i: IApp[]): II18nNav[] => array.map(i, getNav.get);
+export const getI18nProp = (prefix: string) => new Getter<IProp, II18nProp>(
+    (p: IProp): II18nProp => {
+
+        const base: II18nProp = {
+            name: p.name,
+            title: {
+                id: `${prefix}.${p.name}.title`,
+                defaultMessage: p.title ? p.title : p.name,
+            },
+        };
+        if (p.description) {
+            base.description = {
+                id: `${prefix}.${p.name}.description`,
+                defaultMessage: p.description,
+            };
+        }
+        return { ...p, ...base } as II18nProp;
+    });
+export const getI18n = (message: II18nProp | II18nProp[]): II18n => {
+    if (message instanceof Array) {
+        return array.reduce(message, {}, (a, b) => ({ ...a, ...getI18n(b) }));
+    } else {
+        const result = { [message.title.id]: message.title.defaultMessage };
+        if (message.description) {
+            result[message.description.id] = message.description.defaultMessage;
+        }
+        return message.items ? { ...result, ...getI18n(message.items) } : result;
+    }
+};

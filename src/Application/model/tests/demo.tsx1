@@ -1,0 +1,98 @@
+import * as React from 'react';
+import { IApp, IPage } from '../type';
+const appearance: IPage = {
+    name: 'appearance',
+    items: [{ name: 'basic', element: <div>test</div> }],
+};
+const border: IPage = {
+    name: 'border',
+    items: [{ name: 'basic', element: <div>test</div> }],
+};
+const box: IPage = {
+    name: 'box',
+    items: [{ name: 'basic', element: <div>test</div> }],
+};
+
+export const coreModule: IApp = {
+    name: 'core',
+    type: 'module',
+    orgName: 'mocoolka',
+    items: [
+        appearance,
+        border,
+        box,
+    ],
+};
+
+const textfield: IPage = {
+    name: 'textfield',
+    description: 'input text',
+    items: [{ name: 'basic', element: <div>test</div> }],
+};
+const button: IPage = {
+    name: 'button',
+    title: 'Button',
+    items: [{ name: 'basic', element: <div>test</div> }],
+};
+const selection: IPage = {
+    name: 'selection',
+    items: [{ name: 'basic', element: <div>test</div> }],
+};
+
+export const componentModule: IApp = {
+    name: 'component',
+    type: 'module',
+    orgName: 'yu',
+    items: [
+        textfield,
+        button,
+        selection,
+    ],
+};
+
+export const en = {
+    'app.components.HomePage.header': 'This is HomePage component!',
+    'app.components.NotFoundPage.header': 'This is NotFoundPage component!',
+    'boilerplate.containers.LocaleToggle.de': 'de',
+    'boilerplate.containers.LocaleToggle.en': 'en',
+    'mocoolka.app.subTitle': '',
+    'mocoolka.app.title': '',
+    'mocoolka.app.version': '',
+    'mocoolka.nav.app': '',
+    'mocoolka.nav.button': '',
+    'mocoolka.nav.components': '',
+    'mocoolka.nav.customizing': '',
+    'mocoolka.nav.general': '',
+    'mocoolka.nav.start': '',
+    'mocoolka.nav.icon': '',
+    'mocoolka.nav.css': '',
+    'mocoolka.nav.color': '',
+    'mocoolka.nav.border': '',
+    'mocoolka.nav.font': '',
+    'mocoolka.nav.layout': '',
+    'mocoolka.nav.box': '',
+    'mocoolka.nav.typography': '',
+    'mocoolka.nav.appearance': '',
+    'mocoolka.system.credits': 'Made by Mocoolka',
+    'mocoolka.system.subTitle': 'Time-Series Data Visualization',
+    'mocoolka.system.title': 'Mocoolka',
+    'mocoolka.system.version': '1.0.1',
+};
+export const app = {
+    name: 'test',
+    version: '0.0.1',
+    orgName: 'mocoolka',
+    description: 'test',
+};
+
+export const i18n = {
+    en: {
+        messages: en,
+        // localeData: enLocaleData,
+    },
+    zh: {
+        messages: en,
+        // localeData: zhLocaleData,
+    },
+
+};

@@ -1,0 +1,68 @@
+/**
+ *
+ * App.js
+ *
+ * This component is the skeleton around the actual pages, and should only
+ * contain code that should be seen on all pages. (e.g. navigation bar)
+ *
+ * NOTE: while this component should technically be a stateless functional
+ * component (SFC), hot reloading does not currently support SFCs. If hot
+ * reloading is not a necessity for you then you can refactor it and remove
+ * the linting exception.
+ */
+
+import * as React from 'react';
+import { App } from '../../App';
+import { AppNav } from './navs/AppNav';
+import { MaskModal } from '../Base';
+import { Root, Content, NavContent } from './styles';
+import { ThemeProvider, buildTheme } from '../Theme';
+import { LinkComponent } from './type';
+import { MApp } from './model';
+export * from './model';
+/* export interface IAppPageProps {
+  nav: MNavProp[];
+  application: { title: string, subtitle?: string };
+  pathname: string;
+} */
+
+interface IAppPageState {
+  navOpened: boolean;
+}
+const theme = buildTheme();
+export const FlatApp = (Link: LinkComponent) => {
+  return class extends React.Component<{ model: MApp, pathname: string }, IAppPageState> {
+    state: IAppPageState = {
+      navOpened: false,
+    };
+    handleOpenNav = () => {
+      this.setState({ navOpened: !this.state.navOpened });
+    }
+    render() {
+      const { children,  pathname, model } = this.props;
+      return (
+        <ThemeProvider theme={theme}>
+
+          <Root>
+            <Helmet>
+              <title>{model.title}</title>
+            </Helmet>
+
+            <AppNavLink
+              model={model}
+              expanded={this.state.navOpened}
+              pathname={pathname}
+            />
+            <NavContent>
+              <Content>
+                {children}
+              </Content>
+            </NavContent>
+            <MaskModal isOpen={this.state.navOpened} onClick={this.handleOpenNav} />
+          </Root>
+        </ThemeProvider>
+
+      );
+    }
+  };
+};

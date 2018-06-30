@@ -1,0 +1,158 @@
+import { registeModuleComponents } from '../Theme';
+import * as t from '../Theme';
+export {
+    t
+};
+
+const Chapter = registeModuleComponents({
+    Document: {
+
+        Section: {
+            mkstyle: {
+                marginV: { kind: 'bmodule', level: 5 },
+            },
+            tagName: 'section',
+        },
+        Chapter: {
+            mkstyle: {
+                paddingTop: { kind: 'bmodule', level: 10 },
+                margin: 'auto',
+            },
+            width: 'content',
+
+        },
+        Title: {
+            typography: 'h4',
+            color: 'main',
+            mkstyle: {
+                marginBottom: { kind: 'bmodule', level: 4 },
+            },
+            tagName: 'h1',
+        },
+        Content: {
+            selector: [{
+                name: '& h1',
+                value: {
+                    typography: 'h4',
+                    mkstyle: {
+                        fontWeight: { kind: 'fontWeight', level: 'regular' },
+                        maxWidth: 940,
+                    },
+                },
+            }, {
+                name: '& h3',
+                value: {
+                    typography: 'body2',
+                    mkstyle: {
+                        marginBottom: { kind: 'bmodule', level: 2.5 },
+                    },
+                },
+            }, {
+                name: '& p',
+                value: {
+                    typography: 'body2',
+                    mkstyle: {
+                        marginBottom: { kind: 'bmodule', level: 2.5 },
+                    },
+                },
+            }, {
+                name: '& table',
+                value: {
+                    bgColor: 'alt',
+                    typography: 'body1',
+
+                    width: 'full',
+                    mkstyle: {
+                        tableLayout: 'auto',
+                        marginBottom: { kind: 'bmodule', level: 5 },
+                        borderCollapse: 'collapse',
+                        borderSpacing: 0,
+                    },
+                    selector: [{
+                        name: '& th',
+                        value: {
+                            bgColor: 'content',
+                            mkstyle: {
+                                fontWeight: { kind: 'fontWeight', level: 'regular' },
+                                border: '1px solid #eee',
+                                lineHeight: '24px',
+                                padding: '12px 12px 12px 24px',
+                                color: '#212121',
+                                verticalAlign: 'middle',
+                            },
+                        },
+                    }, {
+                        name: '& tr td:first-child',
+                        value: {
+                            mkstyle: {
+                                borderLeft: '1px solid #e5e5e5;',
+                            },
+                        },
+                    }, {
+                        name: '& tr th:first-child',
+                        value: {
+                            mkstyle: {
+                                borderLeft: '1px solid #e5e5e5;',
+                            },
+                        },
+                    }, {
+                        name: '& tr td:last-child',
+                        value: {
+                            mkstyle: {
+                                borderLeft: '1px solid #e5e5e5;',
+                            },
+                        },
+                    }, {
+                        name: '& tr th:last-child',
+                        value: {
+                            mkstyle: {
+                                borderLeft: '1px solid #e5e5e5;',
+                            },
+                        },
+                    }],
+
+                    /*                    '& ': {
+                                           borderLeft: '1px solid #e5e5e5;',
+                                       },
+                                       '& tr:first-child td': {
+                                           borderTop: '1px solid #e5e5e5;',
+                                       },
+                                       '& tr:first-child th': {
+                                           borderTop: '1px solid #e5e5e5;',
+                                       },
+                                       '& tr:last-child td': {
+                                           borderTop: '1px solid #e5e5e5;',
+                                       },
+                                       '& tr:last-child th': {
+                                           borderTop: '1px solid #e5e5e5;',
+                                       },
+                                       '& td': {
+                                           border: '1px solid #eee',
+                                           lineHeight: '24px',
+                                           padding: '12px 12px 12px 24px',
+                                           color: '#212121',
+                                           verticalAlign: 'middle',
+                                       }, */
+                },
+            },
+            ],
+        },
+        Intro: {
+        },
+        IntroWrap: {
+        },
+        ColumnList: {
+        },
+
+        Module: {
+            mkstyle: {
+                width: 360,
+                marginRight: { kind: 'bmodule', level: 5 },
+                display: 'inline-block',
+                paddingBottom: 20,
+                verticalAlign: 'top',
+            },
+        },
+    },
+});
+export default Chapter;

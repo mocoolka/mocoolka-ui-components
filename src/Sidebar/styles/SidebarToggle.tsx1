@@ -1,0 +1,26 @@
+import { themeComponentMixin, Icons } from 'mocoolka-ui-core';
+import * as React from 'react';
+import styled, { StyledComponentClass } from 'styled-components';
+import { Button } from '../../Button';
+
+export interface IThemeInterface {
+  primaryColor: string;
+}
+
+const { IconMenu } = Icons;
+export interface ISidebarToggleProps extends React.Props<{}> {
+  onPress?: (evt: any) => void;
+  className?: string;
+}
+const SidebarToggleStyled: React.StatelessComponent<ISidebarToggleProps> = (props: ISidebarToggleProps) => {
+  const { children, className, onPress, ...otherProps } = props;
+  // let props=Object.assign(defaultProps,otherProps);
+  return (
+    <Button className={className} type="icon" icon={<IconMenu />} onPress={onPress} {...otherProps} />
+  );
+};
+
+export const SidebarToggle: StyledComponentClass<ISidebarToggleProps, any> = styled(SidebarToggleStyled) `
+
+  ${themeComponentMixin('sidebar.ToggleButton')}
+  `;

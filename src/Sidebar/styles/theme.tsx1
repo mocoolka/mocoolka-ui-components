@@ -1,0 +1,82 @@
+
+export default {
+  ToggleButton: {
+    top: 8,
+    left: 12,
+    position: 'fixed',
+    colorTheme: 'white',
+    zIndexTheme: 'bar',
+    conditonValues: [{
+      conditions: [{
+        inputPropName: ['variable', 'width'],
+        value: [ 'default'],
+      }],
+      left: 4,
+      top: 4,
+      display: 'block',
+    }, {
+      conditions: [{
+        inputPropName: ['variable', 'width'],
+        value: ['medium', 'small'],
+      }],
+      left: 12,
+      top: 8,
+      display: 'block',
+    }, {
+      display: 'none',
+    }],
+  },
+  SidebarStyled: {
+    conditonValues: [{
+      conditions: [{
+        inputPropName: ['variable', 'width'],
+        value: ['medium', 'small', 'default'],
+      }, {
+        inputPropName: ['props', 'expanded'],
+        value: true,
+      }],
+      visibility: 'visible',
+      width: 250,
+    }, {
+      conditions: [{
+        inputPropName: ['variable', 'width'],
+        value: ['medium', 'small', 'default'],
+      }],
+      visibility: 'hidden',
+      width: 0,
+    }, {
+      visibility: 'visible',
+      width: 250,
+    }],
+    borderRight: '1px solid rgba(0,0,0,.14)',
+    bottom: '0',
+    display: 'block',
+    left: '0',
+    position: 'fixed',
+    top: '0',
+    width: 256,
+    overflowY: 'auto',
+    tagName: 'nav',
+    // layoutTheme:'fixedLeftTop',
+    backgroundColorTheme: 'paper',
+    lineHeight: '1.5',
+    zIndexTheme: 'nav',
+    transitionProperties: 'width',
+
+  },
+  SidebarWrapper: {
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    position: 'absolute',
+    top: '0',
+    bottom: '0',
+    left: '0',
+    right: '0',
+  },
+  SidebarContent: {
+    paddingBottom: 96,
+    minHeight: '100%',
+    position: 'relative',
+  },
+
+};

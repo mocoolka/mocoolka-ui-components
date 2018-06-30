@@ -1,0 +1,34 @@
+import * as enLocaleData from 'react-intl/locale-data/en';
+import * as zhLocaleData from 'react-intl/locale-data/zh';
+import { II18n, II18nFile, II18nApplication, II18nNav } from './typeI18N';
+import { IApplication, IApp  } from './type';
+import { getI18nProp, getNavs, getI18n } from './helper';
+export {
+    II18nNav,
+};
+export const getI18nObject = (i18nObject: II18n, en: any, zh: any) => (
+    {
+        en: {
+            messages: { ...i18nObject, ...en },
+            localeData: enLocaleData,
+        },
+        zh: {
+            messages: { ...i18nObject, ...zh },
+            localeData: zhLocaleData,
+        },
+
+    }
+);
+export const init = (applicationObject: IApplication, apps: IApp[], en: any, zh: any) => {
+    const application: II18nApplication = getI18nProp((`${applicationObject.orgName}.app`))
+        .get(applicationObject) as II18nApplication;
+    const nav = getNavs(apps);
+    const i18n: II18nFile = getI18nObject({
+        ...getI18n(nav), ...getI18n(application),
+    }, en, zh);
+    return {
+        application,
+        nav,
+        i18n,
+    };
+};

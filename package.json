@@ -1,0 +1,80 @@
+{
+  "name": "mocoolka-ui-components",
+  "version": "0.1.8",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
+  "author": "fastspeeed@gmail.com",
+  "engines": {
+    "node": ">= 4"
+  },
+  "scripts": {
+    "build:next": "next build",
+    "start1": "next start",
+    "dev1": "next",
+    "build1": "next build",
+    "reinstall": "rm -rf node_modules/ && yarn install",
+    "clean": "rm -rf lib/ ",
+    "lint": "tslint -p './tsconfig.json'",
+    "lint:fix": "tslint -p ./tsconfig.json --fix ",
+    "test": "jest",
+    "test:watch": "jest --watch ./src",
+    "build": "rm -rf lib/  && tsc",
+    "precommit": "npm run lint",
+    "prepush": "npm run test",
+    "coverage": "rimraf coverage && jest --coverage"
+  },
+  "dependencies": {
+    "color": "^3.0.0",
+    "marked": "^0.4.0",
+    "mocoolka-css": "^0.2.1",
+    "mocoolka-fp": "^0.1.12",
+    "pick-react-known-prop": "^0.1.4",
+    "prismjs": "^1.15.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0",
+    "styled-components": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.10",
+    "@types/jest": "^22.2.2",
+    "@types/lodash": "^4.14.110",
+    "@types/marked": "^0.4.0",
+    "@types/node": "^9.4.6",
+    "@types/prismjs": "^1.9.0",
+    "@types/react-dom": "^16.0.6",
+    "@types/react-helmet": "^5.0.6",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
+    "jest": "^23.1.0",
+    "jest-serializer-html": "^5.0.0",
+    "react-test-renderer": "^16.4.1",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^22.4.6",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(./src/*|\\.(test|spec))\\.(ts|tsx)$"
+  },
+  "files": [
+    "lib",
+    "LICENSE"
+  ],
+  "keywords": [
+    "mocoolka",
+    "css",
+    "functional"
+  ],
+  "license": "MIT"
+}

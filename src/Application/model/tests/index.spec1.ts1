@@ -1,0 +1,128 @@
+import { coreModule, componentModule, app } from './demo';
+import { getNav, getI18n, getNavs, getI18nProp } from '../helper';
+const menuResult = {
+    items: [
+        {
+            name: 'appearance',
+            title: {
+                defaultMessage: 'appearance',
+                id: 'mocoolka.page.core.appearance.title',
+            },
+        },
+        {
+            name: 'border',
+            title: {
+                defaultMessage: 'border',
+                id: 'mocoolka.page.core.border.title',
+            },
+        }, {
+            name: 'box',
+            title: {
+                defaultMessage: 'box',
+                id: 'mocoolka.page.core.box.title',
+            },
+        },
+    ],
+    name: 'core',
+    title: {
+        defaultMessage: 'core',
+        id: 'mocoolka.module.core.title',
+    },
+};
+const applicationResult = {
+    description: {
+        defaultMessage: 'test',
+        id: 'mocoolka.app.test.description',
+    },
+    name: 'test',
+    title: { defaultMessage: 'test', id: 'mocoolka.app.test.title' },
+    version: '0.0.1',
+    orgName: 'mocoolka',
+};
+const menus = [{
+    items: [{
+        name: 'appearance',
+        title: {
+            defaultMessage: 'appearance',
+            id: 'mocoolka.page.core.appearance.title',
+        },
+    }, {
+        name: 'border', title: {
+            defaultMessage: 'border',
+            id: 'mocoolka.page.core.border.title',
+        },
+    },
+    {
+        name: 'box',
+        title: {
+            defaultMessage: 'box',
+            id: 'mocoolka.page.core.box.title',
+        },
+    }],
+    name: 'core',
+    title: {
+        defaultMessage: 'core',
+        id: 'mocoolka.module.core.title',
+    },
+},
+{
+    items: [{
+        description: {
+            defaultMessage: 'input text',
+            id: 'yu.page.component.textfield.description',
+        }, name: 'textfield',
+        title: {
+            defaultMessage: 'textfield',
+            id: 'yu.page.component.textfield.title',
+        },
+    },
+    {
+        name: 'button', title: {
+            defaultMessage: 'Button',
+            id: 'yu.page.component.button.title',
+        },
+    }, {
+        name: 'selection',
+        title: {
+            defaultMessage: 'selection',
+            id: 'yu.page.component.selection.title',
+        },
+    }],
+    name: 'component', title: {
+        defaultMessage: 'component',
+        id: 'yu.module.component.title',
+    },
+}];
+const navLocale = {
+    'mocoolka.module.core.title': 'core',
+    'mocoolka.page.core.appearance.title': 'appearance',
+    'mocoolka.page.core.border.title': 'border',
+    'mocoolka.page.core.box.title': 'box',
+    'yu.module.component.title': 'component',
+    'yu.page.component.button.title': 'Button',
+    'yu.page.component.selection.title': 'selection',
+    'yu.page.component.textfield.description': 'input text',
+    'yu.page.component.textfield.title': 'textfield',
+};
+const appLocale = {
+    'mocoolka.app.test.description': 'test',
+    'mocoolka.app.test.title': 'test',
+};
+describe('model helper', () => {
+    it('getNav', () => {
+        expect(getNav.get(coreModule)).toEqual(menuResult);
+        // expect(getAppMenu(app, [coreModule, componentModule])).toEqual(menus);
+        // expect(getI18n(menus)).toEqual(locale);
+    });
+
+    it('getNavs', () => {
+        expect(getNavs([coreModule, componentModule])).toEqual(menus);
+    });
+    it('getI18nProp', () => {
+        expect(getI18nProp(`${app.orgName}.app`).get(app)).toEqual(applicationResult);
+    });
+    it('getI18n', () => {
+        expect(getI18n(menus)).toEqual(navLocale);
+        expect(getI18n(applicationResult)).toEqual(appLocale);
+    });
+});

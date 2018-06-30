@@ -1,0 +1,137 @@
+{
+    "source": "https://github.com/gcanti/fp-ts/blob/master/src/colorType.ts",
+    "module": {
+        "kind": "Module",
+        "name": "GlobalProp",
+        "signature": "interface GlobalProp extends ColorProp, FontProp {\n\n}",
+        "title":"Global Prop",
+        "header": "A global property  is a set of global property that define the basic css for all UI elements.",
+        "description": "Site is a special global definition which includes baseline parameters which all other elements inherit.\nIn addition to providing global variables defaults, site also provides page styling\nfor content that exists outside of interface elements.",
+        "items": [
+            {
+                "kind": "Propertyinterface",
+                "name": "ColorProp",
+                "title":"Color",
+                "signature": "interface ColorProp {\n    /**\n     * foreground color\n     */\n    color: 'accent' | 'alert' | 'alt' | 'disabled'\n    | 'main' | 'primary' | 'secondary' | 'success' | 'warning' | 'hint' | 'inherit';\n    /**\n     * background color\n     */\n    bgColor: 'paper' | 'content' | 'divider' | 'accent' | 'alert' | 'alt' | 'disabled'\n    | 'main' | 'selected' | 'focus' | 'success' | 'warning' | 'transparent' | 'inherit';\n}",
+                "header": "Color property define color properties on all element",
+                "description": "The `ColorProp` type class identifies an associative operation on a type\nconstructor.  It is similar to `Semigroup`, except that it applies to\ntypes of kind `* -> *`, like `Array` or `Option`, rather than concrete types\nlike `string` or `number`.\n\n`Alt` instances are required to satisfy the following laws:\n\n1. Associativity: `A.alt(A.alt(fa, ga), ha) = A.alt(fa, A.alt(ga, ha))`\n2. Distributivity: `A.map(A.alt(fa, ga), ab) = A.alt(A.map(fa, ab), A.map(ga, ab))`",
+                "items": [
+                    {
+                        "kind": "Property",
+                        "name": "color",
+                        "title": "Foreground color",
+                        "description": "foreground color",
+                        "type": {
+                            "kind": "Type",
+                            "name": "union",
+                            "items": [
+                                "accent",
+                                "alert",
+                                "alt",
+                                "disabled",
+                                "main",
+                                "primary",
+                                "secondary",
+                                "success",
+                                "warning",
+                                "hint",
+                                "inherit"
+                            ]
+                        },
+                        "signature": "color"
+                    },
+                    {
+                        "kind": "Property",
+                        "name": "bgColor",
+                        "description": "background color,using css background-color",
+                        "type": {
+                            "kind": "Type",
+                            "name": "union",
+                            "items": [
+                                "accent",
+                                "alert",
+                                "alt",
+                                "disabled",
+                                "main",
+                                "success",
+                                "warning",
+                                "inherit",
+                                "paper",
+                                "content",
+                                "divider",
+                                "selected",
+                                "focus",
+                                "transparent"
+                            ]
+                        },
+                        "signature": "bgColor"
+                    }
+                ]
+            },
+            {
+                "kind": "Propertyinterface",
+                "name": "FontProp",
+                "title":"Font",
+                "signature": "interface FontProp {\n    fontWeight: 'thin' | 'light' | 'regular' | 'medium' | 'bold' | 'black' | 'inherit';\n    fontFamily: 'sansSerif' | 'serif' | 'monospace' | 'inherit';\n    fontSize: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' |\n    'subtitle' | 'p' | 'caption' | 'overline' | 'inherit';\n}",
+                "description": "A site can specify styles for page content.",
+                "items": [
+                    {
+                        "kind": "Property",
+                        "name": "fontWeight",
+                        "type": {
+                            "kind": "Type",
+                            "name": "union",
+                            "items": [
+                                "inherit",
+                                "thin",
+                                "light",
+                                "regular",
+                                "medium",
+                                "bold",
+                                "black"
+                            ]
+                        },
+                        "signature": "fontWeight"
+                    },
+                    {
+                        "kind": "Property",
+                        "name": "fontFamily",
+                        "type": {
+                            "kind": "Type",
+                            "name": "union",
+                            "items": [
+                                "inherit",
+                                "sansSerif",
+                                "serif",
+                                "monospace"
+                            ]
+                        },
+                        "signature": "fontFamily"
+                    },
+                    {
+                        "kind": "Property",
+                        "name": "fontSize",
+                        "type": {
+                            "kind": "Type",
+                            "name": "union",
+                            "items": [
+                                "inherit",
+                                "h1",
+                                "h2",
+                                "h3",
+                                "h4",
+                                "h5",
+                                "h6",
+                                "subtitle",
+                                "p",
+                                "caption",
+                                "overline"
+                            ]
+                        },
+                        "signature": "fontSize"
+                    }
+                ]
+            }
+        ]
+    }
+}

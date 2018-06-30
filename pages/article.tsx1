@@ -1,0 +1,54 @@
+import * as React from 'react';
+import Link from 'next/link';
+import {
+    Table, Root,Base
+} from '../src/';
+import { ThemeProvider } from 'styled-components';
+import { Article,  injectGlobalStyle, buildTheme,Media } from '../src';
+injectGlobalStyle();
+
+const theme = buildTheme();
+export default () => (
+    <ThemeProvider theme={theme}  >
+        <Root width="content" align="center" As="section">
+            <Article.Article>
+                <Article.Title>Markdown </Article.Title>
+                <Article.H1>Markdown is a text-to-HTML conversion tool for web writers. </Article.H1>
+            
+                <Article.Toc>
+                    <Article.TocList>
+                        <Article.TocTitle>Title </Article.TocTitle>
+                        <Article.TocListItem>
+                            <Article.TocLink>  Introduction  </Article.TocLink>
+                        </Article.TocListItem>
+                        <Article.TocListItem>
+                            <Article.TocLink>  Discussion List   </Article.TocLink>
+                        </Article.TocListItem>
+                        <Article.TocListItem>
+                            <Article.TocLink>  Installation and Requirements    </Article.TocLink>
+                        </Article.TocListItem>                   
+                    </Article.TocList> 
+
+
+                </Article.Toc>
+                <Article.H1>Introduction </Article.H1>
+                <Article.Body>
+                The type scale appears as text in components and the overall layout. Type attributes can use custom values for the typeface, font, case, size, and letter spacing.
+                </Article.Body>
+                <Article.H2>Headlines</Article.H2>
+                <Article.Body>
+                In the type scale, headlines span from a range of 1 through 6. Headlines are the largest text on the screen, reserved for short, important text or numerals.
+                </Article.Body>
+                <Article.Body>
+                For headlines, you can choose an expressive font, such as a display, handwritten, or script style. These unconventional font designs have details and intricacy that help attract the eye.
+                </Article.Body>
+                <Media.Media>
+                    <Media.Video controls
+                    poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+                     src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4">
+                    </Media.Video>
+                </Media.Media>
+            </Article.Article>
+        </Root>
+    </ ThemeProvider >
+);

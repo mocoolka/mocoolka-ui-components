@@ -1,0 +1,26 @@
+import { StatelessComponent } from 'react';
+import styled, { StyledComponentClass } from 'styled-components';
+import { ObjectOptional } from 'mocoolka-fp/lib/TypeLevel';
+import { TComponentThemeSetting, CommonDomProps, TTheme, AllHTMLAttributes,
+  CommonInputProp, InputPropBase, InputPropFunctionBase } from './Theme/type';
+import { registerPropComponents, themeBaseMixin } from './Theme';
+export {
+  AllHTMLAttributes
+};
+
+/* export const as = <D extends InputPropBase= {},
+  DF extends InputPropFunctionBase = {}
+  , R extends keyof (D & DF) = never>(config: TComponentThemeSetting<D, DF>, WrappedComponent?: any):
+  StyledComponentClass<CommonInputProp & CommonDomProps & ObjectOptional<D & DF, R>, TTheme> => {
+  const asComponents = registerPropComponents(config);
+  if (WrappedComponent) {
+    asComponents.withComponent(WrappedComponent);
+  }
+  return asComponents;
+}; */
+
+export const withProps = <T>(WrappedComponent: StatelessComponent<T>) => {
+  return styled(WrappedComponent)`
+      ${themeBaseMixin<T>()}
+  `;
+};

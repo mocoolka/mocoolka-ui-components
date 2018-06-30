@@ -1,0 +1,18 @@
+import * as React from 'react';
+import Link from 'next/link';
+import {
+    Root, Arrow, buildTheme
+} from '../src/';
+import { ThemeProvider } from 'styled-components';
+import { APPNav, IAppNavPageProps, injectGlobalStyle } from '../src';
+injectGlobalStyle();
+
+const theme = buildTheme();
+export default () => (
+    <ThemeProvider theme={theme}  >
+        <Root width="content" align="center">
+            <Arrow />
+            <Arrow rotate={45} />
+        </Root>
+    </ ThemeProvider >
+);

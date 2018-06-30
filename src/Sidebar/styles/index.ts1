@@ -1,0 +1,7 @@
+import componentTheme from './theme';
+const moduleName = 'sidebar';
+import { registeModuleComponents } from 'mocoolka-ui-core';
+const moduleComponents = registeModuleComponents(moduleName, componentTheme);
+export const SidebarStyled = moduleComponents.SidebarStyled;
+export const SidebarWrapper = moduleComponents.SidebarWrapper;
+export const SidebarContent = moduleComponents.SidebarContent;
